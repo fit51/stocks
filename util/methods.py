@@ -11,9 +11,9 @@ def symbol_to_path(symbol, base_dir="data"):
 # dates = pd.date_range('2010-01-01', '2010-12-31')
 # symbols = ['GOOG','IBM','GLD']
 
-def get_data(symbols, dates):
+def get_data(symbols, dates, add_spy=True):
     df = pd.DataFrame(index=dates)
-    if 'SPY' not in symbols:  # add SPY for reference, if absent
+    if add_spy and 'SPY' not in symbols:  # add SPY for reference, if absent
         symbols.insert(0, 'SPY')
     print(symbols)
     for symbol in symbols:
