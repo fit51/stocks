@@ -1,4 +1,3 @@
-import math
 #daily_returns
 def daily_returns(df):
     daily_returns = (df / df.shift(1)) - 1
@@ -23,8 +22,10 @@ def average_daily_return(df):
 def risk(df):
     return daily_returns(df).std()
 
-def sharpe_ratio(daily_rets, daily_rf, sampling_freq):
-    return math.sqrt(sampling_freq) * (daily_rets - daily_rf).mean() / daily_rets.std()
+def sharpe_ratio(daily_rets, rfr, sampling_freq):
+    daily_rfr = (1.0 + rfr)**(1/sampling_freq) - 1
+    k = (sampling_freq)**(1/2)
+    return k * (daily_rets - daily_rfr).mean() / daily_rets.std()
 
 def sharpe_ratio_dayily(daily_rets, daily_rf):
     return sharpe_ratio(daily_rets, daily_rf, 252)

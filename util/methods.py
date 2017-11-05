@@ -18,7 +18,7 @@ def get_data(symbols, dates, add_spy=True):
     print(symbols)
     for symbol in symbols:
         df_temp=pd.read_csv(symbol_to_path(symbol), index_col="Date", 
-                     parse_dates=True, usecols=['Date', 'Adj Close'], na_values=['nan'])
+                     parse_dates=True, usecols=['Date', 'Adj Close'], na_values=['nan', 'null'])
         df_temp=df_temp.rename(columns={'Adj Close': symbol})
         if symbol == 'SPY':
             df=df.join(df_temp, how='inner')
